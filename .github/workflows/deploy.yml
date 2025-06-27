@@ -23,15 +23,14 @@ jobs:
        curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
        unzip awscliv2.zip
        sudo ./aws/install --update
-    
-
-    - name: Upload Website Files to S3
-      run: |
-        aws s3 cp index.html s3://$BUCKET_NAME/ --acl public-read
-        aws s3 cp styles.css s3://$BUCKET_NAME/ --acl public-read
-        aws s3 cp script.js s3://$BUCKET_NAME/ --acl public-read
 
     - name: Terraform Init & Apply
       run: |
         terraform init
         terraform apply -auto-approve
+
+    - name: Upload Website Files to S3
+      run: |
+        aws s3 cp index.html s3://$BUCKET_NAME/ --acl public-read
+        aws s3 cp styles.css s3://$BUCKET_NAME/ --acl public-read
+        aws s3 cp script.js s3://$BUCKET_NAME/ --acl public-read    
