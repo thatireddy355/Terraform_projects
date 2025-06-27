@@ -34,16 +34,7 @@ resource "aws_s3_bucket_policy" "public_policy" {
   })
 }
 
-# Enable public access at the bucket level
-resource "aws_s3_bucket_public_access_block" "disable_block" {
-  bucket = aws_s3_bucket.website_bucket.id
-
-  block_public_acls       = false
-  block_public_policy     = false
-  ignore_public_acls      = false
-  restrict_public_buckets = false
-}
-
+# ✅ Enable public access by disabling S3 Block Public Access settings
 resource "aws_s3_bucket_public_access_block" "disable_block" {
   bucket = aws_s3_bucket.website_bucket.id
 
